@@ -1,23 +1,31 @@
-const messageGenerator = () => {
-    const noun = ['You', 'Him', 'Her', 'They', 'That guy', 'That girl'];
-    const verb = ['is learning', 'is working out', 'are grinding', 'is studying'];
-    const phrase = ['Self-improvement is the best', 'Rewards to those who stay last', 'Be a sigma and escape the matrix.'];
-    const secret = ['Make $10000/month', 'Wake up at 7 AM', 'The 1% group', 'Aizen Kosuke'];
+import readline from 'node:readline';
 
-    const randomizeMessage = (array) => {
-        return array[Math.floor(Math.random() * array.length)];
-    }
+// Create & store all the message components.
+const mathStudents = ['Christopher', 'Leo', 'Tony', 'Cameron', 'Kasha', 'Naya', 'Cooper', 'Yushef', 'Mr. Kermode'];
+const verb = ['is eating', 'is LOCKED IN!!!', 'is playing Minecraft', 'is plotting something', 'is brainrotting others', 'is thinking he/she is Aizen'];
+const adjective = ['Deliciously', 'Enjoyably', 'Seriously', 'Devious', 'Intentionally'];
+const secretMessage = ['Self-improvement', 'Escape the Matrix', 'Skibidi Toilet', 'Welcome to my Soul Society'];
 
-    let printNoun = randomizeMessage(noun);
-    let printVerb = randomizeMessage(verb);
-    let printPhrase = randomizeMessage(phrase);
-    let printSecret = randomizeMessage(secret);
+// Select random messages in each components.
+const randomMessages = (array) => {
+    return array[Math.floor(Math.random() * array.length)];
+};
 
-    if (Math.floor(Math.random() * 1) === 1) {
-        return `${printNoun} ${printVerb}. ${printPhrase} ---- ${printSecret}`;
+const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+});
+// Displayed the user each time they run the program.
+rl.question(`What's your name? `, (userName)=> {
+    const getStudents = randomMessages(mathStudents);
+    const getVerb = randomMessages(verb);
+    const getAdj = randomMessages(adjective);
+    const getMessage = randomMessages(secretMessage);
+
+    if (Math.floor(Math.random() * 4) >= 3) {
+        console.log(`${userName}: ${getStudents} ${getVerb} ${getAdj}. | ${getMessage}`);
     } else {
-        return `${printNoun} ${printVerb}. ${printPhrase}.`;
+        console.log(`${userName}: ${getStudents} ${getVerb} ${getAdj}.`);
     }
-}
-
-console.log(messageGenerator());
+    rl.close();
+});
